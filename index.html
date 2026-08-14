@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Shravak Sanskar Shivir 2026 - Registration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Rozha+One&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #c22929;
+      --primary-hover: #9e1f1f;
+      --gold: #b38728;
+      --bg: #faf8f5;
+      --card-bg: #ffffff;
+      --border: #dcdfe6;
+      --text: #2d3748;
+      --muted: #64748b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body { 
+      font-family: 'Poppins', sans-serif; 
+      background-color: var(--bg); 
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      background: #111;
+      color: #ccc;
+      padding: 10px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: clamp(0.75rem, 2vw, 0.85rem);
+    }
+
+    /* Hero Banner - Fluid sizing across screens */
+    .hero-banner {
+      background: radial-gradient(circle, #2b1105 0%, #0d0602 100%);
+      color: white;
+      text-align: center;
+      padding: clamp(35px, 6vw, 60px) 16px;
+    }
+    .hero-banner h2 {
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      color: #dfb36c;
+      font-weight: 500;
+    }
+    .hero-banner h1 {
+      font-family: 'Rozha One', serif;
+      font-size: clamp(1.6rem, 5vw, 2.5rem);
+      color: #fff;
+      margin: 12px 0;
+      line-height: 1.3;
+    }
+    .hero-banner p {
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      color: #e2e8f0;
+    }
+    .book-btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 18px;
+      transition: background 0.2s ease, transform 0.1s ease;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+    .book-btn:active { transform: scale(0.98); }
+
+    /* Main Container */
+    .main-container {
+      width: 100%;
+      max-width: 680px; /* Optimal reading/form width for laptop & iPad */
+      margin: 25px auto;
+      padding: 0 16px;
+    }
+
+    /* Description Card */
+    .intro-card {
+      background: var(--card-bg);
+      padding: clamp(20px, 4vw, 30px);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+      margin-bottom: 25px;
+      text-align: center;
+      font-size: clamp(0.95rem, 2vw, 1.05rem);
+      border-top: 4px solid var(--gold);
+    }
+
+    /* Form Container */
+    .form-box {
+      background: var(--card-bg);
+      padding: clamp(20px, 5vw, 40px);
+      border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .form-title {
+      text-align: center;
+      margin-bottom: 25px;
+      color: var(--primary);
+      font-family: 'Rozha One', serif;
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+    }
+
+    /* Single Column Form Groups (1 Field Per Line) */
+    .form-group {
+      margin-bottom: 20px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: clamp(0.9rem, 2vw, 0.95rem);
+      color: #334155;
+    }
+    .req { color: #dc2626; }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="number"],
+    select {
+      width: 100%;
+      height: 48px; /* Touch friendly height for mobile */
+      padding: 0 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 16px; /* Prevents auto-zoom on iOS */
+      outline: none;
+      background-color: #fff;
+      color: #1e293b;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(179,135,40,0.18);
+    }
+
+    /* Radio Group */
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 6px 0;
+    }
+    .radio-group label {
+      font-weight: 400;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-bottom: 0;
+    }
+    .radio-group input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    /* File Upload */
+    .file-upload-box {
+      border: 2px dashed #94a3b8;
+      padding: 24px 16px;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #f8fafc;
+      transition: 0.2s ease;
+    }
+    .file-upload-box:hover {
+      border-color: var(--gold);
+      background: #fffdfa;
+    }
+    .file-upload-box input { display: none; }
+    #fileLabel {
+      font-weight: 500;
+      color: #475569;
+      font-size: 0.95rem;
+      word-break: break-word;
+    }
+
+    /* Submit Button */
+    .submit-btn {
+      width: 100%;
+      height: 50px;
+      background: #18181b;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      margin-top: 10px;
+    }
+    .submit-btn:hover { background: #000; }
+    .submit-btn:disabled { background: #94a3b8; cursor: not-allowed; }
+
+    /* WhatsApp Promo Box */
+    .whatsapp-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: clamp(20px, 4vw, 30px);
+      text-align: center;
+      margin-top: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    }
+    .whatsapp-card img {
+      width: 100%;
+      max-width: 170px;
+      height: auto;
+      margin: 15px auto;
+      display: block;
+      border-radius: 8px;
+    }
+    .whatsapp-link {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    /* Footer */
+    footer {
+      background: #0f0a07;
+      color: #94a3b8;
+      padding: 40px 16px 20px;
+      margin-top: 50px;
+      font-size: 0.9rem;
+    }
+    .footer-grid {
+      max-width: 680px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+    }
+    footer h4 { color: #fff; margin-bottom: 10px; font-size: 1rem; }
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 15px;
+      border-top: 1px solid #27272a;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <span>✉ info@jainshivir.org</span>
+    <span>📞 +91 9876543210 (WhatsApp Only)</span>
+  </div>
+
+  <!-- Hero Header -->
+  <header class="hero-banner">
+    <h2>॥ श्री 108 विद्यासागर नमः ॥</h2>
+    <h1>33 वां श्रावक संस्कार शिविर 2026</h1>
+    <p>16 सितंबर से 25 सितंबर 2026 | गुरु परंपरा पर आधारित</p>
+    <a href="#form-section" class="book-btn">Register Now / पंजीकरण करें</a>
+  </header>
+
+  <div class="main-container">
+    
+    <!-- Shivir Description -->
+    <section class="intro-card">
+      <h3 style="color: var(--primary); margin-bottom: 10px; font-size: 1.25rem;">पर्वाधिराज दसलक्षण महापर्व</h3>
+      <p>
+        गुरुकुल परम्परा पर आधारित <strong>३३ वां श्रावक संस्कार शिविर</strong><br>
+        श्रमण संस्कृति के उन्नायक, आत्म विद्या के पथ प्रदर्शक जिन सूर्य <strong>आचार्य श्रेष्ठ श्री १०८ विद्यासागर जी महाराज</strong> के आज्ञानुवर्ती शिष्य श्रावक संस्कार शिविर के जनक, जिन धर्म प्रभावक जिन शासन के शेर, तीर्थ चक्रवर्ती, जगत पूज्य <strong>निर्यापक श्रमण मुनि पुंगव श्री १०८ सुधासागर जी महाराज</strong> ससंघ।
+      </p>
+    </section>
+
+    <!-- Registration Form (Single Field Per Line) -->
+    <section class="form-box" id="form-section">
+      <h3 class="form-title">Shivir Registration Form</h3>
+      <form id="shivirForm">
+        
+        <!-- 1. Full Name -->
+        <div class="form-group">
+          <label for="name">Full Name / पूरा नाम <span class="req">*</span></label>
+          <input type="text" id="name" required placeholder="Enter your full name">
+        </div>
+
+        <!-- 2. Father's Name -->
+        <div class="form-group">
+          <label for="fatherName">Father's Name / पिता का नाम <span class="req">*</span></label>
+          <input type="text" id="fatherName" required placeholder="Enter father's full name">
+        </div>
+
+        <!-- 3. Date of Birth -->
+        <div class="form-group">
+          <label for="dob">Date of Birth / जन्म तिथि <span class="req">*</span></label>
+          <input type="date" id="dob" required onchange="calculateAge()">
+        </div>
+
+        <!-- 4. Age (Auto-calculated) -->
+        <div class="form-group">
+          <label for="age">Age / उम्र <span class="req">*</span></label>
+          <input type="number" id="age" required placeholder="Auto-calculated from DOB" min="1" max="120">
+        </div>
+
+        <!-- 5. Gender -->
+        <div class="form-group">
+          <label>Gender / लिंग <span class="req">*</span></label>
+          <div class="radio-group">
+            <label><input type="radio" name="gender" value="Male" checked> Male / पुरुष</label>
+            <label><input type="radio" name="gender" value="Female"> Female / महिला</label>
+            <label><input type="radio" name="gender" value="Other"> Other</label>
+          </div>
+        </div>
+
+        <!-- 6. Phone -->
+        <div class="form-group">
+          <label for="phone">Phone / मोबाइल नंबर (WhatsApp) <span class="req">*</span></label>
+          <input type="tel" id="phone" required placeholder="10-digit mobile number" pattern="[0-9]{10}">
+        </div>
+
+        <!-- 7. City -->
+        <div class="form-group">
+          <label for="city">City / शहर <span class="req">*</span></label>
+          <input type="text" id="city" required placeholder="Enter your city">
+        </div>
+
+        <!-- 8. State -->
+        <div class="form-group">
+          <label for="state">State / राज्य <span class="req">*</span></label>
+          <select id="state" required>
+            <option value="" disabled selected>-- Select State / UT --</option>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+            <option value="Assam">Assam</option>
+            <option value="Bihar">Bihar</option>
+            <option value="Chhattisgarh">Chhattisgarh</option>
+            <option value="Goa">Goa</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Haryana">Haryana</option>
+            <option value="Himachal Pradesh">Himachal Pradesh</option>
+            <option value="Jharkhand">Jharkhand</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Manipur">Manipur</option>
+            <option value="Meghalaya">Meghalaya</option>
+            <option value="Mizoram">Mizoram</option>
+            <option value="Nagaland">Nagaland</option>
+            <option value="Odisha">Odisha</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Sikkim">Sikkim</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Tripura">Tripura</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Uttarakhand">Uttarakhand</option>
+            <option value="West Bengal">West Bengal</option>
+            <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+            <option value="Chandigarh">Chandigarh</option>
+            <option value="Dadra & Nagar Haveli and Daman & Diu">Dadra & Nagar Haveli and Daman & Diu</option>
+            <option value="Delhi">Delhi (NCT)</option>
+            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+            <option value="Ladakh">Ladakh</option>
+            <option value="Lakshadweep">Lakshadweep</option>
+            <option value="Puducherry">Puducherry</option>
+          </select>
+        </div>
+
+        <!-- 9. PIN Code -->
+        <div class="form-group">
+          <label for="pincode">PIN Code / पिन कोड <span class="req">*</span></label>
+          <input type="text" id="pincode" required placeholder="6-digit PIN code" pattern="[0-9]{6}">
+        </div>
+
+        <!-- 10. Stay -->
+        <div class="form-group">
+          <label for="stay">Stay Accommodation / आवास व्यवस्था <span class="req">*</span></label>
+          <select id="stay" required>
+            <option value="" disabled selected>-- Select Stay Preference --</option>
+            <option value="Yes (Need Accommodation)">Yes (Shivir Parisar Stay Required)</option>
+            <option value="No (Self Arrangement)">No (Local / Self Arrangement)</option>
+          </select>
+        </div>
+
+        <!-- 11. Photo Upload (Google Drive) -->
+        <div class="form-group">
+          <label>Upload Aadhar Card Photo / आधार कार्ड फोटो अपलोड करें <span class="req">*</span></label>
+          <div class="file-upload-box" onclick="document.getElementById('photoFile').click()">
+            <span id="fileLabel">📁 Click / Tap to Upload Photo</span>
+            <input type="file" id="photoFile" accept="image/*" required onchange="previewFileName()">
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">Submit Registration / फॉर्म जमा करें</button>
+        <p id="statusMsg" style="text-align:center; margin-top: 15px; font-weight:600;"></p>
+      </form>
+    </section>
+
+    <!-- WhatsApp QR Code Section -->
+    <section class="whatsapp-card">
+      <h3 style="color: var(--gold);">व्हाट्सएप ग्रुप से जुड़ें</h3>
+      <p style="font-size: 0.9rem; margin-top: 5px;">Scan QR code or click link to join the WhatsApp Group</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://chat.whatsapp.com/YOUR_GROUP_INVITE_LINK" alt="WhatsApp QR Code">
+      <a href="https://chat.whatsapp.com/YOUR_GROUP_INVITE_LINK" target="_blank" class="whatsapp-link">सीधे लिंक पर क्लिक करके जुड़ें →</a>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>Shivir Samiti</h4>
+        <p>Your gateway to spiritual devotion and learning experiences.</p>
+      </div>
+      <div>
+        <h4>Address</h4>
+        <p>Shri Digambar Jain Mandir Parisar</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Phone: +91 9876543210<br>Email: info@jainshivir.org</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Shravak Sanskar Shivir. All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- Script to Post Data directly to Google Apps Script -->
+  <script>
+    // PASTE YOUR DEPLOYED GOOGLE APPS SCRIPT URL HERE
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz3pIr_-UEhmduIvP3h0F7zXXaPbb3vDGxdG4Vi-h7FItRMIQihfuHHVJEQFZLmue1bWQ/exec";
+
+    function calculateAge() {
+      const dobVal = document.getElementById('dob').value;
+      if (!dobVal) return;
+      const dob = new Date(dobVal);
+      const diffMs = Date.now() - dob.getTime();
+      const ageDate = new Date(diffMs);
+      const calculatedAge = Math.abs(ageDate.getUTCFullYear() - 1970);
+      document.getElementById('age').value = isNaN(calculatedAge) ? '' : calculatedAge;
+    }
+
+    function previewFileName() {
+      const fileInput = document.getElementById('photoFile');
+      const label = document.getElementById('fileLabel');
+      if (fileInput.files.length > 0) {
+        label.innerText = "Selected: " + fileInput.files[0].name;
+      }
+    }
+
+    document.getElementById('shivirForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      const status = document.getElementById('statusMsg');
+      
+      btn.disabled = true;
+      btn.innerText = "Submitting... कृपया प्रतीक्षा करें...";
+      status.innerText = "";
+
+      const fileInput = document.getElementById('photoFile');
+      let fileData = "";
+      let fileName = "";
+
+      if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        fileName = file.name;
+        fileData = await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.readAsDataURL(file);
+        });
+      }
+
+      const payload = {
+        name: document.getElementById('name').value,
+        fatherName: document.getElementById('fatherName').value,
+        dob: document.getElementById('dob').value,
+        age: document.getElementById('age').value,
+        gender: document.querySelector('input[name="gender"]:checked').value,
+        phone: document.getElementById('phone').value,
+        city: document.getElementById('city').value,
+        state: document.getElementById('state').value,
+        pincode: document.getElementById('pincode').value,
+        stay: document.getElementById('stay').value,
+        fileData: fileData,
+        fileName: fileName
+      };
+
+      try {
+        const response = await fetch(SCRIPT_URL, {
+          method: "POST",
+          body: JSON.stringify(payload)
+        });
+        const res = await response.json();
+        
+        if (res.result === "success") {
+          status.style.color = "green";
+          status.innerText = "✓ पंजीकरण सफलतापूर्वक प्राप्त हुआ! (Registration Successful)";
+          document.getElementById('shivirForm').reset();
+          document.getElementById('fileLabel').innerText = "📁 Click / Tap to Upload Photo";
+        } else {
+          throw new Error(res.message);
+        }
+      } catch (err) {
+        status.style.color = "#dc2626";
+        status.innerText = "Submission failed. Please check internet connection or script deployment.";
+        console.error(err);
+      } finally {
+        btn.disabled = false;
+        btn.innerText = "Submit Registration / फॉर्म जमा करें";
+      }
+    });
+  </script>
+</body>
+</html>
