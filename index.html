@@ -6,6 +6,9 @@
   <title>Shravak Sanskar Shivir 2026 - Registration</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Rozha+One&display=swap" rel="stylesheet">
+  <!-- FontAwesome for Social Media Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <style>
     :root {
       --primary: #c22929;
@@ -28,29 +31,50 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Top Bar */
-    .top-bar {
-      background: #111;
-      color: #ccc;
-      padding: 10px 16px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 8px;
-      font-size: clamp(0.75rem, 2vw, 0.85rem);
+    /* Infinite Marquee Strip */
+    .ticker-wrap {
+      width: 100%;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.35);
+      border-top: 1px solid rgba(223, 179, 108, 0.2);
+      border-bottom: 1px solid rgba(223, 179, 108, 0.2);
+      padding: 10px 0;
+      white-space: nowrap;
     }
 
-    /* Hero Banner - Fluid sizing across screens */
+    .ticker-track {
+      display: inline-flex;
+      white-space: nowrap;
+      animation: ticker-move 20s linear infinite;
+    }
+
+    .ticker-track:hover {
+      animation-play-state: paused;
+    }
+
+    .ticker-item {
+      color: #dfb36c;
+      font-weight: 500;
+      font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+      padding: 0 35px;
+      flex-shrink: 0;
+    }
+
+    @keyframes ticker-move {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Hero Banner */
     .hero-banner {
       background: radial-gradient(circle, #2b1105 0%, #0d0602 100%);
       color: white;
       text-align: center;
-      padding: clamp(35px, 6vw, 60px) 16px;
+      padding: clamp(30px, 5vw, 50px) 0 clamp(35px, 6vw, 60px);
     }
-    .hero-banner h2 {
-      font-size: clamp(1rem, 3vw, 1.3rem);
-      color: #dfb36c;
-      font-weight: 500;
+    .hero-content {
+      padding: 0 16px;
+      margin-top: 15px;
     }
     .hero-banner h1 {
       font-family: 'Rozha One', serif;
@@ -82,7 +106,7 @@
     /* Main Container */
     .main-container {
       width: 100%;
-      max-width: 680px; /* Optimal reading/form width for laptop & iPad */
+      max-width: 680px;
       margin: 25px auto;
       padding: 0 16px;
     }
@@ -114,7 +138,6 @@
       font-size: clamp(1.4rem, 4vw, 1.8rem);
     }
 
-    /* Single Column Form Groups (1 Field Per Line) */
     .form-group {
       margin-bottom: 20px;
       width: 100%;
@@ -136,11 +159,11 @@
     input[type="number"],
     select {
       width: 100%;
-      height: 48px; /* Touch friendly height for mobile */
+      height: 48px;
       padding: 0 14px;
       border: 1.5px solid var(--border);
       border-radius: 8px;
-      font-size: 16px; /* Prevents auto-zoom on iOS */
+      font-size: 16px;
       outline: none;
       background-color: #fff;
       color: #1e293b;
@@ -152,7 +175,6 @@
       box-shadow: 0 0 0 3px rgba(179,135,40,0.18);
     }
 
-    /* Radio Group */
     .radio-group {
       display: flex;
       flex-wrap: wrap;
@@ -175,7 +197,6 @@
       cursor: pointer;
     }
 
-    /* File Upload */
     .file-upload-box {
       border: 2px dashed #94a3b8;
       padding: 24px 16px;
@@ -197,7 +218,6 @@
       word-break: break-word;
     }
 
-    /* Submit Button */
     .submit-btn {
       width: 100%;
       height: 50px;
@@ -214,7 +234,7 @@
     .submit-btn:hover { background: #000; }
     .submit-btn:disabled { background: #94a3b8; cursor: not-allowed; }
 
-    /* WhatsApp Promo Box */
+    /* WhatsApp Section */
     .whatsapp-card {
       background: #fff;
       border-radius: 12px;
@@ -240,45 +260,140 @@
       font-size: 0.95rem;
     }
 
-    /* Footer */
+    /* 3-Column Footer Styling */
     footer {
       background: #0f0a07;
       color: #94a3b8;
-      padding: 40px 16px 20px;
+      padding: 45px 20px 20px;
       margin-top: 50px;
       font-size: 0.9rem;
     }
     .footer-grid {
-      max-width: 680px;
+      max-width: 1000px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 25px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 30px;
+      align-items: start;
     }
-    footer h4 { color: #fff; margin-bottom: 10px; font-size: 1rem; }
+    footer h4 { color: #fff; margin-bottom: 12px; font-size: 1.05rem; }
+
+    /* Left: Contact Info */
+    .footer-left {
+      text-align: left;
+    }
+    .footer-left p {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Center: Shivir Aayojak */
+    .footer-center {
+      text-align: center;
+    }
+    .footer-center a {
+      color: var(--gold);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.1rem;
+      display: inline-block;
+      margin-top: 4px;
+      transition: color 0.2s;
+    }
+    .footer-center a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* Right: Logo & Social Media */
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+    }
+    .footer-logo {
+      height: 48px;
+      width: auto;
+      margin-bottom: 12px;
+      object-fit: contain;
+    }
+    .social-links {
+      display: flex;
+      gap: 10px;
+    }
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      background: #ffffff;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .social-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    }
+    .social-btn.fb { color: #1877f2; }
+    .social-btn.insta { color: #e4405f; }
+    .social-btn.twitter { color: #1da1f2; }
+    .social-btn.youtube { color: #cd201f; }
+
     .footer-bottom {
       text-align: center;
-      margin-top: 30px;
-      padding-top: 15px;
+      margin-top: 35px;
+      padding-top: 18px;
       border-top: 1px solid #27272a;
       font-size: 0.8rem;
+    }
+
+    /* Responsive adjustments for Tablets & Mobiles */
+    @media(max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        text-align: center;
+      }
+      .footer-left {
+        text-align: center;
+      }
+      .footer-left p {
+        justify-content: center;
+      }
+      .footer-right {
+        align-items: center;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <span>✉ info@jainshivir.org</span>
-    <span>📞 +91 9876543210 (WhatsApp Only)</span>
-  </div>
-
   <!-- Hero Header -->
   <header class="hero-banner">
-    <h2>॥ श्री 108 विद्यासागर नमः ॥</h2>
-    <h1>33 वां श्रावक संस्कार शिविर 2026</h1>
-    <p>16 सितंबर से 25 सितंबर 2026 | गुरु परंपरा पर आधारित</p>
-    <a href="#form-section" class="book-btn">Register Now / पंजीकरण करें</a>
+    
+    <!-- Seamless Infinite Moving Text Line -->
+    <div class="ticker-wrap">
+      <div class="ticker-track">
+        <span class="ticker-item">॥ सूरी आदि महावीरकीर्ति विमल सन्मति सुंदर सागराय नमः ॥</span>
+        <span class="ticker-item">॥ सूरी आदि महावीरकीर्ति विमल सन्मति सुंदर सागराय नमः ॥</span>
+        <span class="ticker-item">॥ सूरी आदि महावीरकीर्ति विमल सन्मति सुंदर सागराय नमः ॥</span>
+        <span class="ticker-item">॥ सूरी आदि महावीरकीर्ति विमल सन्मति सुंदर सागराय नमः ॥</span>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <h1>श्रावक संस्कार शिविर 2026</h1>
+      <p>16 सितंबर से 25 सितंबर 2026</p>
+      <a href="#form-section" class="book-btn">Register Now / पंजीकरण करें</a>
+    </div>
   </header>
 
   <div class="main-container">
@@ -292,7 +407,7 @@
       </p>
     </section>
 
-    <!-- Registration Form (Single Field Per Line) -->
+    <!-- Registration Form -->
     <section class="form-box" id="form-section">
       <h3 class="form-title">Shivir Registration Form</h3>
       <form id="shivirForm">
@@ -315,7 +430,7 @@
           <input type="date" id="dob" required onchange="calculateAge()">
         </div>
 
-        <!-- 4. Age (Auto-calculated) -->
+        <!-- 4. Age -->
         <div class="form-group">
           <label for="age">Age / उम्र <span class="req">*</span></label>
           <input type="number" id="age" required placeholder="Auto-calculated from DOB" min="1" max="120">
@@ -398,14 +513,14 @@
           <label for="stay">Stay Accommodation / आवास व्यवस्था <span class="req">*</span></label>
           <select id="stay" required>
             <option value="" disabled selected>-- Select Stay Preference --</option>
-            <option value="Yes (Need Accommodation)">Yes (Shivir Parisar Stay Required)</option>
-            <option value="No (Self Arrangement)">No (Local / Self Arrangement)</option>
+            <option value="Yes (Need Accommodation)">Yes / हाँ </option>
+            <option value="No (Self Arrangement)">No / नहीं </option>
           </select>
         </div>
 
-        <!-- 11. Photo Upload (Google Drive) -->
+        <!-- 11. Document Photo Upload -->
         <div class="form-group">
-          <label>Upload Aadhar Card Photo / आधार कार्ड फोटो अपलोड करें <span class="req">*</span></label>
+          <label>Upload Document / पहचान पत्र फोटो अपलोड करें <span class="req">*</span></label>
           <div class="file-upload-box" onclick="document.getElementById('photoFile').click()">
             <span id="fileLabel">📁 Click / Tap to Upload Photo</span>
             <input type="file" id="photoFile" accept="image/*" required onchange="previewFileName()">
@@ -417,40 +532,52 @@
       </form>
     </section>
 
-    <!-- WhatsApp QR Code Section -->
+    <!-- WhatsApp Section -->
     <section class="whatsapp-card">
       <h3 style="color: var(--gold);">व्हाट्सएप ग्रुप से जुड़ें</h3>
       <p style="font-size: 0.9rem; margin-top: 5px;">Scan QR code or click link to join the WhatsApp Group</p>
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://chat.whatsapp.com/YOUR_GROUP_INVITE_LINK" alt="WhatsApp QR Code">
-      <a href="https://chat.whatsapp.com/YOUR_GROUP_INVITE_LINK" target="_blank" class="whatsapp-link">सीधे लिंक पर क्लिक करके जुड़ें →</a>
+      <a href="https://chat.whatsapp.com/YOUR_GROUP_INVITE_LINK" target="_blank" class="whatsapp-link">सीधे लिंक पर क्लिक करके जुड़ें →</a>
     </section>
 
   </div>
 
-  <!-- Footer -->
+  <!-- 3-Column Footer -->
   <footer>
     <div class="footer-grid">
-      <div>
-        <h4>Shivir Samiti</h4>
-        <p>Your gateway to spiritual devotion and learning experiences.</p>
+      <!-- 1. Left Column: Contact Info -->
+      <div class="footer-left">
+        <h4>Contact Information</h4>
+        <p><i class="fa-solid fa-phone" style="color: var(--gold);"></i> +91 9876543210</p>
+        <p><i class="fa-solid fa-envelope" style="color: var(--gold);"></i> info@jainshivir.org</p>
       </div>
-      <div>
-        <h4>Address</h4>
-        <p>Shri Digambar Jain Mandir Parisar</p>
+
+      <!-- 2. Center Column: Shivir Aayojak -->
+      <div class="footer-center">
+        <h4>शिविर आयोजक</h4>
+        <a href="https://www.sunderyuvamanch.com/" target="_blank">Sunder Yuva Manch</a>
       </div>
-      <div>
-        <h4>Contact</h4>
-        <p>Phone: +91 9876543210<br>Email: info@jainshivir.org</p>
+
+      <!-- 3. Right Column: Logo & Social Media -->
+      <div class="footer-right">
+        <!-- Replace src with your logo URL -->
+        <img src="https://placehold.co/180x60/transparent/white?text=LOGO" alt="Logo" class="footer-logo">
+        <div class="social-links">
+          <a href="https://facebook.com" target="_blank" class="social-btn fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://instagram.com" target="_blank" class="social-btn insta" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://twitter.com" target="_blank" class="social-btn Whatsapp" title="Whatsapp / X"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://youtube.com" target="_blank" class="social-btn youtube" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
       </div>
     </div>
+
     <div class="footer-bottom">
-      &copy; 2026 Shravak Sanskar Shivir. All Rights Reserved.
+      &copy; 2026 Shravak Sanskar Shivir. All Rights Reserved. | Managed By TEAM_SUNDER_LAKSHYA
     </div>
   </footer>
 
   <!-- Script to Post Data directly to Google Apps Script -->
   <script>
-    // PASTE YOUR DEPLOYED GOOGLE APPS SCRIPT URL HERE
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz3pIr_-UEhmduIvP3h0F7zXXaPbb3vDGxdG4Vi-h7FItRMIQihfuHHVJEQFZLmue1bWQ/exec";
 
     function calculateAge() {
