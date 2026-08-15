@@ -154,6 +154,7 @@
     .req { color: #dc2626; }
 
     input[type="text"],
+    input[type="email"],
     input[type="tel"],
     input[type="date"],
     input[type="number"],
@@ -234,6 +235,30 @@
     .submit-btn:hover { background: #000; }
     .submit-btn:disabled { background: #94a3b8; cursor: not-allowed; }
 
+    /* Success Card & WhatsApp Receipt */
+    .success-panel {
+      display: none;
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .wa-share-btn {
+      background: #25d366;
+      color: white;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      font-size: 0.95rem;
+    }
+
     /* WhatsApp Section */
     .whatsapp-card {
       background: #fff;
@@ -278,7 +303,6 @@
     }
     footer h4 { color: #fff; margin-bottom: 12px; font-size: 1.05rem; }
 
-    /* Left: Contact Info */
     .footer-left {
       text-align: left;
     }
@@ -289,7 +313,6 @@
       gap: 8px;
     }
 
-    /* Center: Shivir Aayojak */
     .footer-center {
       text-align: center;
     }
@@ -307,7 +330,6 @@
       text-decoration: underline;
     }
 
-    /* Right: Logo & Social Media */
     .footer-right {
       display: flex;
       flex-direction: column;
@@ -343,7 +365,7 @@
     }
     .social-btn.fb { color: #1877f2; }
     .social-btn.insta { color: #e4405f; }
-    .social-btn.twitter { color: #1da1f2; }
+    .social-btn.whatsapp { color: #25d366; }
     .social-btn.youtube { color: #cd201f; }
 
     .footer-bottom {
@@ -354,7 +376,6 @@
       font-size: 0.8rem;
     }
 
-    /* Responsive adjustments for Tablets & Mobiles */
     @media(max-width: 768px) {
       .footer-grid {
         grid-template-columns: 1fr;
@@ -378,8 +399,6 @@
 
   <!-- Hero Header -->
   <header class="hero-banner">
-    
-    <!-- Seamless Infinite Moving Text Line -->
     <div class="ticker-wrap">
       <div class="ticker-track">
         <span class="ticker-item">॥ सूरी आदि महावीरकीर्ति विमल सन्मति सुंदर सागराय नमः ॥</span>
@@ -390,8 +409,8 @@
     </div>
 
     <div class="hero-content">
-      <h1>श्रावक संस्कार शिविर 2026</h1>
-      <p>16 सितंबर से 25 सितंबर 2026</p>
+      <h1>33 वां श्रावक संस्कार शिविर 2026</h1>
+      <p>16 सितंबर से 25 सितंबर 2026 | गुरु परंपरा पर आधारित</p>
       <a href="#form-section" class="book-btn">Register Now / पंजीकरण करें</a>
     </div>
   </header>
@@ -452,13 +471,19 @@
           <input type="tel" id="phone" required placeholder="10-digit mobile number" pattern="[0-9]{10}">
         </div>
 
-        <!-- 7. City -->
+        <!-- 7. Email (NEW) -->
+        <div class="form-group">
+          <label for="email">Email Address / ईमेल <span class="req">*</span></label>
+          <input type="email" id="email" required placeholder="example@domain.com">
+        </div>
+
+        <!-- 8. City -->
         <div class="form-group">
           <label for="city">City / शहर <span class="req">*</span></label>
           <input type="text" id="city" required placeholder="Enter your city">
         </div>
 
-        <!-- 8. State -->
+        <!-- 9. State -->
         <div class="form-group">
           <label for="state">State / राज्य <span class="req">*</span></label>
           <select id="state" required>
@@ -502,13 +527,13 @@
           </select>
         </div>
 
-        <!-- 9. PIN Code -->
+        <!-- 10. PIN Code -->
         <div class="form-group">
           <label for="pincode">PIN Code / पिन कोड <span class="req">*</span></label>
           <input type="text" id="pincode" required placeholder="6-digit PIN code" pattern="[0-9]{6}">
         </div>
 
-        <!-- 10. Stay -->
+        <!-- 11. Stay -->
         <div class="form-group">
           <label for="stay">Stay Accommodation / आवास व्यवस्था <span class="req">*</span></label>
           <select id="stay" required>
@@ -518,7 +543,7 @@
           </select>
         </div>
 
-        <!-- 11. Document Photo Upload -->
+        <!-- 12. Document Photo Upload -->
         <div class="form-group">
           <label>Upload Document / पहचान पत्र फोटो अपलोड करें <span class="req">*</span></label>
           <div class="file-upload-box" onclick="document.getElementById('photoFile').click()">
@@ -529,6 +554,13 @@
 
         <button type="submit" class="submit-btn" id="submitBtn">Submit Registration / फॉर्म जमा करें</button>
         <p id="statusMsg" style="text-align:center; margin-top: 15px; font-weight:600;"></p>
+
+        <!-- Post Submit Success & WhatsApp Template Box -->
+        <div id="successPanel" class="success-panel">
+          <h4 style="color: #166534; margin-bottom: 6px;">✓ पंजीकरण सफलतापूर्वक दर्ज किया गया!</h4>
+          <p style="font-size: 0.9rem; color: #15803d;" id="regSuccessText"></p>
+        </div>
+
       </form>
     </section>
 
@@ -545,40 +577,39 @@
   <!-- 3-Column Footer -->
   <footer>
     <div class="footer-grid">
-      <!-- 1. Left Column: Contact Info -->
+      <!-- 1. Left: Contact -->
       <div class="footer-left">
         <h4>Contact Information</h4>
         <p><i class="fa-solid fa-phone" style="color: var(--gold);"></i> +91 9876543210</p>
         <p><i class="fa-solid fa-envelope" style="color: var(--gold);"></i> info@jainshivir.org</p>
       </div>
 
-      <!-- 2. Center Column: Shivir Aayojak -->
+      <!-- 2. Center: Shivir Aayojak -->
       <div class="footer-center">
         <h4>शिविर आयोजक</h4>
         <a href="https://www.sunderyuvamanch.com/" target="_blank">Sunder Yuva Manch</a>
       </div>
 
-      <!-- 3. Right Column: Logo & Social Media -->
+      <!-- 3. Right: Logo & Social -->
       <div class="footer-right">
-        <!-- Replace src with your logo URL -->
         <img src="https://placehold.co/180x60/transparent/white?text=LOGO" alt="Logo" class="footer-logo">
         <div class="social-links">
           <a href="https://facebook.com" target="_blank" class="social-btn fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
           <a href="https://instagram.com" target="_blank" class="social-btn insta" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://twitter.com" target="_blank" class="social-btn Whatsapp" title="Whatsapp / X"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://wa.me/919876543210" target="_blank" class="social-btn whatsapp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
           <a href="https://youtube.com" target="_blank" class="social-btn youtube" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
-      &copy; 2026 Shravak Sanskar Shivir. All Rights Reserved. | Managed By TEAM_SUNDER_LAKSHYA
+      &copy; 2026 Shravak Sanskar Shivir. All Rights Reserved.
+      Managed By TEAM_SUNDER_LAKSHYA
     </div>
   </footer>
 
-  <!-- Script to Post Data directly to Google Apps Script -->
   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz3pIr_-UEhmduIvP3h0F7zXXaPbb3vDGxdG4Vi-h7FItRMIQihfuHHVJEQFZLmue1bWQ/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzC02hrqVvsdhQ_vb73TvrmLM78EEebbAHjteOFOd_eQkRKPimLDWOfKJ3LwAolXl1aHA/exec";
 
     function calculateAge() {
       const dobVal = document.getElementById('dob').value;
@@ -602,10 +633,14 @@
       e.preventDefault();
       const btn = document.getElementById('submitBtn');
       const status = document.getElementById('statusMsg');
+      const successPanel = document.getElementById('successPanel');
+      const regSuccessText = document.getElementById('regSuccessText');
+      const waDirectBtn = document.getElementById('waDirectBtn');
       
       btn.disabled = true;
-      btn.innerText = "Submitting... कृपया प्रतीक्षा करें...";
+      btn.innerText = "Submitting & Sending Mail... कृपया प्रतीक्षा करें...";
       status.innerText = "";
+      successPanel.style.display = "none";
 
       const fileInput = document.getElementById('photoFile');
       let fileData = "";
@@ -628,6 +663,7 @@
         age: document.getElementById('age').value,
         gender: document.querySelector('input[name="gender"]:checked').value,
         phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
         city: document.getElementById('city').value,
         state: document.getElementById('state').value,
         pincode: document.getElementById('pincode').value,
@@ -645,7 +681,13 @@
         
         if (res.result === "success") {
           status.style.color = "green";
-          status.innerText = "✓ पंजीकरण सफलतापूर्वक प्राप्त हुआ! (Registration Successful)";
+          status.innerText = "✓ पंजीकरण विवरण एवं पुष्टि ईमेल भेज दिया गया है!";
+          
+          // Show registration ID and WhatsApp forwarding button
+          regSuccessText.innerText = "आपकी पंजीकरण संख्या (Reg ID): " + res.regId + " | आपके ईमेल पर पुष्टि रसीद भेज दी गई है।";
+          waDirectBtn.href = "https://wa.me/91" + payload.phone + "?text=" + res.whatsappText;
+          successPanel.style.display = "block";
+
           document.getElementById('shivirForm').reset();
           document.getElementById('fileLabel').innerText = "📁 Click / Tap to Upload Photo";
         } else {
