@@ -78,7 +78,6 @@
       text-align: center;
       padding: 0;
       overflow: hidden;
-      /* Flex properties ensure the image stays centered if it's scaled larger than the box */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -123,15 +122,14 @@
       border-radius: clamp(16px, 4vw, 50px);
     }
 
-    /* NEW: Elegant, Minimalist Carousel Buttons */
     .carousel-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
-      color: #334155; /* Subtle dark gray icon */
+      background: rgba(255, 255, 255, 0.85);
+      color: #334155;
       border: 1px solid rgba(255,255,255,0.4);
-      width: clamp(32px, 8vw, 42px); /* Responsive perfect circle */
+      width: clamp(32px, 8vw, 42px);
       height: clamp(32px, 8vw, 42px);
       display: flex;
       align-items: center;
@@ -140,14 +138,13 @@
       font-size: clamp(0.9rem, 2vw, 1.2rem);
       border-radius: 50%;
       z-index: 10;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Soft drop shadow */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       transition: all 0.3s ease;
-      /* Remove default padding to ensure icon is perfectly centered */
       padding: 0; 
     }
     .carousel-btn:hover { 
       background: #ffffff; 
-      color: var(--primary); /* Icon turns red on hover */
+      color: var(--primary);
       box-shadow: 0 6px 16px rgba(0,0,0,0.25);
     }
     .prev-btn { left: clamp(8px, 2vw, 15px); }
@@ -203,7 +200,6 @@
     }
     .req { color: #dc2626; }
 
-    /* Touch-friendly inputs */
     input[type="text"],
     input[type="email"],
     input[type="tel"],
@@ -270,6 +266,43 @@
       word-break: break-word;
     }
 
+    /* Terms & Condition Checkbox Container */
+    .terms-box {
+      background: #fffdf7;
+      border: 1.5px solid #e8dec8;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin: 20px 0 10px;
+    }
+    .checkbox-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .checkbox-container input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-top: 3px;
+      cursor: pointer;
+      accent-color: var(--primary);
+      flex-shrink: 0;
+    }
+    .checkbox-text {
+      font-size: clamp(0.85rem, 2vw, 0.92rem);
+      color: #2b1105;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+    .terms-reminder {
+      display: none;
+      color: #dc2626;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
     .submit-btn {
       width: 100%;
       height: clamp(48px, 6vh, 50px);
@@ -280,11 +313,15 @@
       font-size: clamp(1rem, 2vw, 1.05rem);
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s ease;
+      transition: background 0.2s ease, opacity 0.2s ease;
       margin-top: 10px;
     }
-    .submit-btn:hover { background: #000; }
-    .submit-btn:disabled { background: #94a3b8; cursor: not-allowed; }
+    .submit-btn:hover:not(:disabled) { background: #000; }
+    .submit-btn:disabled { 
+      background: #94a3b8; 
+      cursor: not-allowed; 
+      opacity: 0.65;
+    }
 
     /* Success Card */
     .success-panel {
@@ -350,7 +387,17 @@
     .footer-center a:hover { color: #fff; text-decoration: underline; }
 
     .footer-right { display: flex; flex-direction: column; align-items: flex-start; }
-    .footer-logo { height: 48px; width: auto; margin-bottom: 12px; object-fit: contain; }
+    
+    /* Footer Logo */
+    .footer-logo { 
+      max-height: 100px; 
+      max-width: 200px; 
+      width: auto; 
+      margin-bottom: 12px; 
+      object-fit: contain; 
+      display: block;
+    }
+    
     .social-links { display: flex; gap: 10px; }
     .social-btn {
       width: 40px; height: 40px; background: #ffffff; border-radius: 10px;
@@ -369,14 +416,11 @@
       border-top: 1px solid #27272a; font-size: clamp(0.75rem, 2vw, 0.8rem);
     }
 
-    /* Target specifically Tablets & Phones */
     @media (max-width: 768px) {
-      /* Zooms in the Hero Image centrally so it looks taller and bigger on phones */
       .hero-image-wrapper img {
         width: 140%;
         max-width: none; 
       }
-
       .footer-grid { text-align: center; }
       .footer-left p { justify-content: center; }
       .footer-right { align-items: center; }
@@ -430,7 +474,7 @@
       <h3 style="color: var(--primary); margin-bottom: 10px; font-size: 1.25rem;">पर्वाधिराज दसलक्षण महापर्व</h3>
       <p>
         तपस्वी सम्राट के लघु नंदन, दिव्य तपस्वी, आत्मोद्धारक युवाचार्य<br><strong>आचार्य श्री १०८ सुंदर सागर जी महाराज ससंघ</strong><br>
-         के परम पावन आशीर्वाद से भक्तों को पुण्यात्मा बनने का यह स्वर्णिम अवसर प्राप्त होने जा रहा है। इस पुण्य अवसर का लाभ उठाने हेतु <strong>शीघ्रातिशीघ्र</strong> अपना पंजीकरण करवाकर अपनी <strong>सीट सुनिश्चित करें</strong>।
+        के परम पावन आशीर्वाद से भक्तों को पुण्यात्मा बनने का यह स्वर्णिम अवसर प्राप्त होने जा रहा है। इस पुण्य अवसर का लाभ उठाने हेतु <strong>शीघ्रातिशीघ्र</strong> अपना पंजीकरण करवाकर अपनी <strong>सीट सुनिश्चित करें</strong>।
       </p>
     </section>
 
@@ -519,7 +563,20 @@
           </div>
         </div>
 
-        <button type="submit" class="submit-btn" id="submitBtn">Submit Registration / फॉर्म जमा करें</button>
+        <!-- Terms & Conditions Checkbox -->
+        <div class="terms-box">
+          <label class="checkbox-container" for="agreeTerms">
+            <input type="checkbox" id="agreeTerms" onchange="handleTermsChange()">
+            <span class="checkbox-text">
+              मैंने ऊपर दी गई समस्त नियमावली को ध्यानपूर्वक पढ़ा, समझा एवं स्वीकार किया है। मैं इसके सभी नियमों से पूर्णतः तथा उनका निष्ठापूर्वक पालन करने के लिए सहमत हूँ। <span class="req">*</span>
+            </span>
+          </label>
+          <p id="termsReminder" class="terms-reminder">
+            ⚠️ कृपया फॉर्म जमा करने से पहले नियमावली की स्वीकृति हेतु चेकबॉक्स को टिक (✓) करें।
+          </p>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn" disabled>Submit Registration / फॉर्म जमा करें</button>
         <p id="statusMsg" style="text-align:center; margin-top: 15px; font-weight:600;"></p>
 
         <div id="successPanel" class="success-panel">
@@ -555,7 +612,8 @@
       </div>
 
       <div class="footer-right">
-        <img src="https://placehold.co/180x60/transparent/white?text=LOGO" alt="Logo" class="footer-logo">
+        <!-- Logo Added Here -->
+        <img src="logo.png" alt="Sunder Yuva Manch Logo" class="footer-logo">
         <div class="social-links">
           <a href="https://www.facebook.com/share/1JaWNtrC6J/" target="_blank" class="social-btn fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
           <a href="https://www.instagram.com/divya_tapasvi_official?igsh=MXBzbTYwaGJpcGg5NQ==" target="_blank" class="social-btn insta" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -630,8 +688,74 @@
       }
     }
 
+    /* Handle Checkbox Changes & Enable/Disable Submit Button */
+    function handleTermsChange() {
+      const agreeBox = document.getElementById('agreeTerms');
+      const submitBtn = document.getElementById('submitBtn');
+      const reminder = document.getElementById('termsReminder');
+
+      if (agreeBox.checked) {
+        submitBtn.disabled = false;
+        reminder.style.display = 'none';
+      } else {
+        submitBtn.disabled = true;
+        reminder.style.display = 'block';
+      }
+    }
+
+    // Function to compress image before uploading
+    function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.7) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (event) {
+          const img = new Image();
+          img.src = event.target.result;
+          img.onload = function () {
+            const canvas = document.createElement('canvas');
+            let width = img.width;
+            let height = img.height;
+
+            // Calculate new dimensions while maintaining aspect ratio
+            if (width > height) {
+              if (width > maxWidth) {
+                height = Math.round((height *= maxWidth / width));
+                width = maxWidth;
+              }
+            } else {
+              if (height > maxHeight) {
+                width = Math.round((width *= maxHeight / height));
+                height = maxHeight;
+              }
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            
+            // Convert canvas back to compressed base64 jpeg
+            const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+            resolve(compressedDataUrl);
+          };
+          img.onerror = (err) => reject(err);
+        };
+        reader.onerror = (err) => reject(err);
+      });
+    }
+
     document.getElementById('shivirForm').addEventListener('submit', async function(e) {
       e.preventDefault();
+      const agreeBox = document.getElementById('agreeTerms');
+      const reminder = document.getElementById('termsReminder');
+
+      // Double-check validation reminder
+      if (!agreeBox.checked) {
+        reminder.style.display = 'block';
+        agreeBox.focus();
+        return;
+      }
+
       const btn = document.getElementById('submitBtn');
       const status = document.getElementById('statusMsg');
       const successPanel = document.getElementById('successPanel');
@@ -649,11 +773,18 @@
       if (fileInput.files.length > 0) {
         const file = fileInput.files[0];
         fileName = file.name;
-        fileData = await new Promise((resolve) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(reader.result);
-          reader.readAsDataURL(file);
-        });
+        
+        try {
+          // Compress the image before converting it to data
+          fileData = await compressImage(file, 800, 800, 0.7);
+        } catch (error) {
+          console.error("Image compression failed", error);
+          status.style.color = "#dc2626";
+          status.innerText = "Image processing failed. Please try a different image.";
+          btn.disabled = false;
+          btn.innerText = "Submit Registration / फॉर्म जमा करें";
+          return; // Stop form submission if compression fails
+        }
       }
 
       const payload = {
@@ -688,6 +819,8 @@
 
           document.getElementById('shivirForm').reset();
           document.getElementById('fileLabel').innerText = "📁 Click / Tap to Upload Photo";
+          agreeBox.checked = false;
+          btn.disabled = true;
         } else {
           throw new Error(res.message);
         }
@@ -695,8 +828,8 @@
         status.style.color = "#dc2626";
         status.innerText = "Submission failed. Please check internet connection or script deployment.";
         console.error(err);
-      } finally {
         btn.disabled = false;
+      } finally {
         btn.innerText = "Submit Registration / फॉर्म जमा करें";
       }
     });
