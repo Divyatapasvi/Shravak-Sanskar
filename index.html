@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Shravak Sanskar Shivir 2026 - Registration</title>
+  <title>Sanmati Sunder Shravak Sanskar Shivir 2026 - Registration</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Rozha+One&display=swap" rel="stylesheet">
   <!-- FontAwesome for Social Media Icons -->
@@ -32,7 +32,7 @@
       overflow-x: hidden;
     }
 
-    /* Responsive Marquee Strip - Fixed to relative and added margin-top */
+    /* Responsive Marquee Strip */
     .ticker-wrap {
       width: 100%;
       overflow: hidden;
@@ -43,7 +43,7 @@
       display: flex;
       position: relative; 
       z-index: 2;
-      margin-top: clamp(10px, 2vw, 15px); /* Creates the gap at the top */
+      margin-top: clamp(10px, 2vw, 15px);
     }
 
     .ticker-track {
@@ -70,29 +70,35 @@
       100% { transform: translateX(-100%); }
     }
 
-    /* Hero Banner Image - Updated for Natural Scaling */
+    /* Hero Banner Image */
     .hero-image-wrapper {
       position: relative;
       width: 100%;
-      background: #000;
+      background: #1a0a04;
       text-align: center;
       padding: 0;
       overflow: hidden;
+      /* Flex properties ensure the image stays centered if it's scaled larger than the box */
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .hero-image-wrapper img {
       width: 100%;
-      height: auto; /* Lets the image scale naturally */
+      height: auto;
       display: block;
       margin: 0;
+      object-fit: cover;
+      object-position: center;
     }
 
-    /* Carousel / Slider - Updated for Natural Scaling */
+    /* Carousel / Slider */
     .carousel-container {
       position: relative;
       width: min(95%, 1000px);
       margin: 18px auto 0;
       overflow: hidden;
-      background: transparent; /* Removed the black background */
+      background: transparent;
       border-radius: clamp(16px, 4vw, 50px);
       box-shadow: 0 8px 22px rgba(0,0,0,0.08);
     }
@@ -104,37 +110,48 @@
     .carousel-slide {
       flex: 0 0 100%;
       width: 100%;
-      height: auto; /* Allows natural height */
+      height: auto; 
       display: flex;
       align-items: center;
       justify-content: center;
-      background: transparent; /* Removed the black background */
+      background: transparent;
     }
     .carousel-slide img {
       width: 100%;
-      height: auto; /* Shows full image without cropping */
+      height: auto; 
       display: block;
       border-radius: clamp(16px, 4vw, 50px);
     }
 
-    /* Touch-friendly Carousel Buttons */
+    /* NEW: Elegant, Minimalist Carousel Buttons */
     .carousel-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(0,0,0,0.65);
-      color: white;
-      border: none;
-      padding: clamp(8px, 2vw, 12px) clamp(12px, 3vw, 18px);
+      background: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+      color: #334155; /* Subtle dark gray icon */
+      border: 1px solid rgba(255,255,255,0.4);
+      width: clamp(32px, 8vw, 42px); /* Responsive perfect circle */
+      height: clamp(32px, 8vw, 42px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
-      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
       border-radius: 50%;
       z-index: 10;
-      transition: background 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Soft drop shadow */
+      transition: all 0.3s ease;
+      /* Remove default padding to ensure icon is perfectly centered */
+      padding: 0; 
     }
-    .carousel-btn:hover { background: var(--primary); }
-    .prev-btn { left: clamp(5px, 2vw, 15px); }
-    .next-btn { right: clamp(5px, 2vw, 15px); }
+    .carousel-btn:hover { 
+      background: #ffffff; 
+      color: var(--primary); /* Icon turns red on hover */
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    }
+    .prev-btn { left: clamp(8px, 2vw, 15px); }
+    .next-btn { right: clamp(8px, 2vw, 15px); }
 
     /* Main Container */
     .main-container {
@@ -198,7 +215,7 @@
       padding: 0 14px;
       border: 1.5px solid var(--border);
       border-radius: 8px;
-      font-size: 16px; /* Prevents iOS Safari from zooming in automatically */
+      font-size: 16px;
       outline: none;
       background-color: #fff;
       color: #1e293b;
@@ -352,21 +369,25 @@
       border-top: 1px solid #27272a; font-size: clamp(0.75rem, 2vw, 0.8rem);
     }
 
-    /* Target specifically Tablets & Phones to center footer items */
+    /* Target specifically Tablets & Phones */
     @media (max-width: 768px) {
+      /* Zooms in the Hero Image centrally so it looks taller and bigger on phones */
+      .hero-image-wrapper img {
+        width: 140%;
+        max-width: none; 
+      }
+
       .footer-grid { text-align: center; }
       .footer-left p { justify-content: center; }
       .footer-right { align-items: center; }
-
       .radio-group { gap: 10px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Marquee Ticker - Moved above the hero image naturally with a gap -->
+  <!-- Marquee Ticker -->
   <div class="ticker-wrap">
-    <!-- Double tracks for a seamless loop -->
     <div class="ticker-track">
       <span class="ticker-item">॥ सूरी आदि महावीरकीर्ति विमल सन्मति सुंदर सागराय नमः ॥</span>
       <span class="ticker-item">॥ सूरी आदि महावीरकीर्ति विमल सन्मति सुंदर सागराय नमः ॥</span>
@@ -393,7 +414,6 @@
     <button class="carousel-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
 
     <div class="carousel-track" id="carouselTrack">
-      <!-- Posters -->
       <div class="carousel-slide"><img src="B.png" alt="Poster 1"></div>
       <div class="carousel-slide"><img src="C.png" alt="Poster 2"></div>
       <div class="carousel-slide"><img src="D.png" alt="Poster 3"></div>
@@ -546,18 +566,16 @@
     </div>
 
     <div class="footer-bottom">
-      &copy; 2026 Shravak Sanskar Shivir. All Rights Reserved. <br>Managed By TEAM_SUNDER_LAKSHYA
+      &copy; 2026 Shravak Sanskar Shivir. All Rights Reserved. <br> Managed By TEAM_SUNDER_LAKSHYA
     </div>
   </footer>
 
   <script>
-    // CAROUSEL LOOP LOGIC
     let currentSlide = 0;
     const track = document.getElementById('carouselTrack');
     const slides = Array.from(document.querySelectorAll('.carousel-slide'));
     const totalSlides = slides.length;
 
-    // Clone the first slide and append it at the end so the loop feels smooth
     const firstSlideClone = slides[0].cloneNode(true);
     track.appendChild(firstSlideClone);
 
@@ -589,10 +607,8 @@
       applyTransform(currentSlide);
     }
 
-    // Auto-slide every 4 seconds
     setInterval(() => { moveSlide(1); }, 4000);
 
-    // FORM SUBMISSION LOGIC
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzC02hrqVvsdhQ_vb73TvrmLM78EEebbAHjteOFOd_eQkRKPimLDWOfKJ3LwAolXl1aHA/exec";
 
     function calculateAge() {
