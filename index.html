@@ -416,11 +416,25 @@
       border-top: 1px solid #27272a; font-size: clamp(0.75rem, 2vw, 0.8rem);
     }
 
+    /* Mobile specific adjustments */
     @media (max-width: 768px) {
       .hero-image-wrapper img {
         width: 140%;
         max-width: none; 
       }
+      
+      /* Carousel Mobile Height Fix */
+      .carousel-container {
+        width: 96%;
+        border-radius: 16px;
+      }
+      .carousel-slide img {
+        min-height: 240px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 16px;
+      }
+
       .footer-grid { text-align: center; }
       .footer-left p { justify-content: center; }
       .footer-right { align-items: center; }
@@ -478,7 +492,7 @@
       </p>
     </section>
 
-    <!-- Niyamavali Rules Added Here -->
+    <!-- Niyamavali Rules -->
     <section class="intro-card" style="text-align: left; padding: clamp(20px, 4vw, 30px) clamp(20px, 5vw, 40px);">
       <h3 style="color: var(--primary); margin-bottom: 15px; text-align: center; font-size: 1.25rem;">नियमावली</h3>
       <p style="margin-bottom: 15px; font-weight: 500;">
@@ -839,7 +853,7 @@
         const res = await response.json();
 
         if (res.result === "success") {
-          status.innerText = ""; // Fixes the double message issue shown in the image
+          status.innerText = ""; // Keeping the fix to remove redundant message
 
           regSuccessText.innerText = "आपकी पंजीकरण संख्या (Reg ID): " + res.regId + " | आपके ईमेल पर पुष्टि रसीद भेज दी गई है।";
           successPanel.style.display = "block";
