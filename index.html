@@ -617,8 +617,8 @@
           <label for="stay">Stay Accommodation / आवास व्यवस्था <span class="req">*</span></label>
           <select id="stay" required>
             <option value="" disabled selected>-- Select Stay Preference --</option>
-            <option value="Yes">Yes / हाँ </option>
-            <option value="No">No / नहीं </option>
+            <option value="Yes (Need Accommodation)">Yes / हाँ </option>
+            <option value="No (Self Arrangement)">No / नहीं </option>
           </select>
         </div>
 
@@ -654,12 +654,32 @@
       </form>
     </section>
 
+    <!-- Payment Section -->
+    <section class="whatsapp-card">
+      <h3 style="color: var(--gold);">Payment / भुगतान</h3>
+      <p style="font-size: 0.9rem; margin-top: 5px;">Scan the QR code or click the link below to pay via UPI</p>
+      
+      <!-- Payment QR Code (Replace 'yourupiid@bank' with your actual UPI ID) -->
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=sparshjain@nyes&pn=Shivir%20Registration" alt="Payment QR Code">
+      <br>
+      
+      <!-- Direct UPI Payment Link (Opens payment apps on mobile devices) -->
+      <a href="upi://pay?pa=sparshjain@nyes&pn=Shivir%20Registration" class="whatsapp-link" style="background-color: var(--primary); color: #fff; padding: 10px 20px; border-radius: 8px; text-decoration: none; display: inline-block; margin-top: 15px; font-weight: 500;">
+        Pay via UPI Apps (Mobile) →
+      </a>
+    </section>
+
     <!-- WhatsApp Join Group Section -->
     <section class="whatsapp-card">
       <h3 style="color: var(--gold);">व्हाट्सएप ग्रुप से जुड़ें</h3>
-      <p style="font-size: 0.9rem; margin-top: 5px;">Scan QR code or click link to join the WhatsApp Group</p>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://chat.whatsapp.com/JwLnDre3rFw78R3RCf7viM?s=cl&p=a&ilr=1" alt="WhatsApp QR Code">
-      <a href="https://chat.whatsapp.com/JwLnDre3rFw78R3RCf7viM?s=cl&p=a&ilr=1" target="_blank" class="whatsapp-link">सीधे लिंक पर क्लिक करके जुड़ें →</a>
+      <p style="font-size: 0.9rem; margin-top: 5px;">Click the WhatsApp logo or link to join the Group</p>
+      
+      <!-- Clickable WhatsApp Logo -->
+      <a href="https://chat.whatsapp.com/JwLnDre3rFw78R3RCf7viM?s=cl&p=a&ilr=1" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" style="width: 80px; height: auto; max-width: none; margin: 15px auto; display: block; border-radius: 0; cursor: pointer;">
+      </a>
+      
+      <a href="https://chat.whatsapp.com/JwLnDre3rFw78R3RCf7viM?s=cl&p=a&ilr=1" target="_blank" class="whatsapp-link">सन्मति सुंदर श्रावक संस्कार शिविर 2026☀️</a>
     </section>
 
   </div>
@@ -770,8 +790,8 @@
       }
     }
 
-    // Function to compress image before uploading
-    function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.7) {
+    // Function to compress image aggressively to target under a specific KB size
+    function compressImage(file, targetKB = 20) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -780,6 +800,11 @@
           img.src = event.target.result;
           img.onload = function () {
             const canvas = document.createElement('canvas');
+            
+            // Start with much smaller maximum dimensions for a smaller file footprint
+            let maxWidth = 400;
+            let maxHeight = 400;
+            
             let width = img.width;
             let height = img.height;
 
@@ -801,8 +826,19 @@
             const ctx = canvas.getContext('2d');
             ctx.drawImage(img, 0, 0, width, height);
             
-            // Convert canvas back to compressed base64 jpeg
-            const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+            let quality = 0.7;
+            let compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+            
+            // Calculate approximate file size in KB based on Base64 string length
+            let sizeKB = Math.round((compressedDataUrl.length - 22) * 3 / 4) / 1024;
+
+            // If it's still bigger than the target (20KB), reduce quality in a loop
+            while (sizeKB > targetKB && quality > 0.1) {
+              quality -= 0.1;
+              compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+              sizeKB = Math.round((compressedDataUrl.length - 22) * 3 / 4) / 1024;
+            }
+            
             resolve(compressedDataUrl);
           };
           img.onerror = (err) => reject(err);
@@ -842,8 +878,8 @@
         fileName = file.name;
         
         try {
-          // Compress the image before converting it to data
-          fileData = await compressImage(file, 800, 800, 0.7);
+          // Compress the image before converting it to data targeting ~20KB
+          fileData = await compressImage(file, 20);
         } catch (error) {
           console.error("Image compression failed", error);
           status.style.color = "#dc2626";
